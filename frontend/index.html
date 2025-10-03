@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GeoMindIA - Intelligent Geospatial Analysis</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY&libraries=places,visualization" async defer></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <h1>🗺️ GeoMindIA</h1>
+                <p>Intelligent geospatial analysis powered by AI</p>
+            </div>
+            <div class="status-indicators">
+                <div class="status-dot" id="api-status" title="API Status"></div>
+                <div class="status-dot" id="db-status" title="Database Status"></div>
+                <div class="status-dot" id="llm-status" title="LLM Status"></div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Left Panel: Query Interface -->
+            <div class="left-panel">
+                <!-- Feature Tabs -->
+                <div class="feature-tabs">
+                    <button class="tab-button active" data-tab="query">💬 Query</button>
+                    <button class="tab-button" data-tab="vision">👁️ Vision</button>
+                    <button class="tab-button" data-tab="routing">🚗 Routing</button>
+                </div>
+
+                <!-- Query Tab -->
+                <div class="tab-content active" id="query-tab">
+                    <div class="query-section">
+                        <h2>Ask a Question</h2>
+                        <div class="query-input-container">
+                            <textarea 
+                                id="query-input" 
+                                placeholder="Example: Show me areas in Porto Alegre with high potential for coffee shops, considering young population density, no competitors within 500 meters, and within 10 minutes walk from business centers."
+                                rows="4"
+                            ></textarea>
+                            <button id="submit-query" class="primary-button">
+                                <span id="submit-text">Analyze</span>
+                                <span id="submit-loader" class="loader hidden"></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vision Analysis Tab -->
+                <div class="tab-content" id="vision-tab">
+                    <div class="vision-section">
+                        <h2>AI Vision Analysis</h2>
+                        <p class="section-description">Click on the map to analyze satellite or street view imagery</p>
+                        
+                        <div class="vision-controls">
+                            <label>Analysis Type:</label>
+                            <select id="vision-analysis-type" class="control-select">
+                                <option value="commercial_potential">Commercial Potential</option>
+                                <option value="infrastructure">Infrastructure Quality</option>
+                                <option value="green_space">Green Spaces</option>
+                                <option value="development">Development Level</option>
+                            </select>
+
+                            <label>View Type:</label>
+                            <select id="vision-view-type" class="control-select">
+                                <option value="satellite">Satellite View</option>
+                                <option value="streetview">Street View</option>
+                            </select>
+
+                            <button id="analyze-vision" class="primary-button">
+                                Analyze Selected Location
+                            </button>
+                        </div>
+
+                        <div id="vision-results" class="vision-results hidden">
+                            <h3>Analysis Results</h3>
+                            <div id="vision-image" class="vision-image"></div>
+                            <div id="vision-insights" class="vision-insights"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Routing Tab -->
+                <div class="tab-content" id="routing-tab">
+                    <div class="routing-section">
+                        <h2>Route & Accessibility</h2>
+                        
+                        <div class="routing-controls">
+                            <label>Feature:</label>
+                            <select id="routing-feature" class="control-select">
+                                <option value="isochrone">Isochrone Map</option>
+                                <option value="accessibility">Accessibility Score</option>
+                                <option value="optimize">Route Optimization</option>
+                            </select>
+
+                            <div id="isochrone-controls" class="feature-controls">
+                                <label>Travel Time (minutes):</label>
+                                <input type="number" id="isochrone-duration" value="10" min="5" max="60" class="control-input">
+                                
+                                <label>Travel Mode:</label>
+                                <select id="isochrone-mode" class="control-select">
+                                    <option value="walking">Walking</option>
+                                    <option value="driving">Driving</option>
+                                    <option value="bicycling">Bicycling</option>
+                                    <option value="transit">Transit</option>
+                                </select>
+
+                                <button id="calculate-isochrone" class="primary-button">
+                                    Calculate Isochrone
+                                </button>
+                            </div>
+
+                            <div id="accessibility-controls" class="feature-controls hidden">
+                                <label>Check accessibility to:</label>
+                                <div class="checkbox-group">
+                                    <label><input type="checkbox" value="transit_station" checked> Transit</label>
+                                    <label><input type="checkbox" value="hospital" checked> Hospitals</label>
+                                    <label><input type="checkbox" value="school" checked> Schools</label>
+                                    <label><input type="checkbox" value="supermarket" checked> Supermarkets</label>
+                                </div>
+                                
+                                <button id="calculate-accessibility" class="primary-button">
+                                    Analyze Accessibility
+                                </button>
+                            </div>
+
+                            <div id="optimize-controls" class="feature-controls hidden">
+                                <p>Click on map to add waypoints, then optimize route</p>
+                                <div id="waypoint-list" class="waypoint-list"></div>
+                                <button id="clear-waypoints" class="secondary-button">Clear Waypoints</button>
+                                <button id="optimize-route" class="primary-button">Optimize Route</button>
+                            </div>
+                        </div>
+
+                        <div id="routing-results" class="routing-results"></div>
+                    </div>
+                </div>
+
+                <!-- Sample Queries -->
+                <div class="samples-section">
+                    <h3>Sample Queries</h3>
+                    <div id="sample-queries" class="sample-queries">
+                        <!-- Populated dynamically -->
+                    </div>
+                </div>
+
+                <!-- Query History -->
+                <div class="history-section">
+                    <h3>Recent Queries</h3>
+                    <div id="query-history" class="query-history">
+                        <p class="empty-state">No queries yet</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Center Panel: Map -->
+            <div class="center-panel">
+                <div id="map" class="map-container"></div>
+                <div id="map-controls" class="map-controls">
+                    <button id="clear-map" class="control-button">Clear Map</button>
+                    <select id="visualization-type" class="control-select">
+                        <option value="markers">Markers</option>
+                        <option value="heatmap">Heatmap</option>
+                        <option value="polygons">Polygons</option>
+                        <option value="isochrone">Isochrone</option>
+                    </select>
+                </div>
+                <div id="map-info" class="map-info hidden">
+                    <p>Click on map to select location</p>
+                </div>
+            </div>
+
+            <!-- Right Panel: Results -->
+            <div class="right-panel">
+                <div class="results-section">
+                    <h2>Results</h2>
+                    <div id="results-container" class="results-container">
+                        <div class="empty-state">
+                            <p>🎯 Ask a question to see results</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interpretation Panel -->
+                <div class="interpretation-section collapsed">
+                    <h3 class="collapsible-header" id="interpretation-header">
+                        Query Interpretation
+                        <span class="toggle-icon">▼</span>
+                    </h3>
+                    <div id="interpretation-content" class="interpretation-content">
+                        <pre id="interpretation-text"></pre>
+                    </div>
+                </div>
+
+                <!-- SQL Query Panel -->
+                <div class="sql-section collapsed">
+                    <h3 class="collapsible-header" id="sql-header">
+                        Generated SQL
+                        <span class="toggle-icon">▼</span>
+                    </h3>
+                    <div id="sql-content" class="sql-content">
+                        <pre id="sql-text"></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loading-overlay" class="loading-overlay hidden">
+        <div class="loading-spinner"></div>
+        <p>Analyzing your query...</p>
+    </div>
+
+    <script src="app.js"></script>
+    <script src="advanced-features.js"></script>
+</body>
+</html>
+

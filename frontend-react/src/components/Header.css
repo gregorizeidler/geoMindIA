@@ -1,0 +1,42 @@
+.header {
+  background: linear-gradient(135deg, var(--primary-color), #3b82f6);
+  color: white;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: var(--shadow-lg);
+}
+
+.logo h1 {
+  font-size: 1.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.logo p {
+  font-size: 0.875rem;
+  opacity: 0.9;
+}
+
+.status-indicators {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.status-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: var(--text-secondary);
+  transition: background-color 0.3s;
+}
+
+.status-dot.healthy {
+  background-color: var(--success-color);
+  box-shadow: 0 0 8px var(--success-color);
+}
+
+.status-dot.unhealthy {
+  background-color: var(--error-color);
+}
+

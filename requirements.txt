@@ -1,0 +1,30 @@
+# Backend Dependencies for GeoMindIA
+
+# Web Framework
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+pydantic==2.5.0
+
+# Database
+asyncpg==0.29.0
+psycopg2-binary==2.9.9
+
+# Google AI and Maps
+google-generativeai==0.3.1
+googlemaps==4.10.0
+
+# Environment and Configuration
+python-dotenv==1.0.0
+
+# CORS
+python-multipart==0.0.6
+
+# JSON and Data Processing
+python-json-logger==2.0.7
+
+# Optional: GeoJSON processing
+geojson==3.1.0
+
+# Image processing for Vision features
+Pillow==10.1.0
+

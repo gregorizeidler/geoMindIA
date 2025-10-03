@@ -1,0 +1,197 @@
+.whatif-tab {
+  padding: 1rem 0;
+}
+
+.whatif-tab h2 {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.whatif-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 1.5rem 0;
+  padding: 1rem;
+  background: var(--bg-color);
+  border-radius: 8px;
+}
+
+.whatif-controls label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.whatif-controls select,
+.whatif-controls input {
+  padding: 0.5rem;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+}
+
+.simulation-results {
+  margin-top: 2rem;
+}
+
+.result-header {
+  padding: 1.5rem;
+  background: linear-gradient(135deg, var(--primary-color), #3b82f6);
+  color: white;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+}
+
+.result-header h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.location-info {
+  opacity: 0.9;
+  font-size: 0.875rem;
+}
+
+.timeline-info {
+  padding: 1rem;
+  background: var(--bg-color);
+  border-radius: 6px;
+  margin-bottom: 1rem;
+}
+
+.impacts-section {
+  margin: 2rem 0;
+}
+
+.impacts-section h4 {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
+
+.impact-category {
+  margin: 1.5rem 0;
+  padding: 1rem;
+  background: white;
+  border-radius: 6px;
+  box-shadow: var(--shadow);
+}
+
+.impact-category h4 {
+  font-size: 0.9rem;
+  color: var(--primary-color);
+  margin-bottom: 0.75rem;
+  text-transform: capitalize;
+}
+
+.impact-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.impact-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem;
+  background: var(--bg-color);
+  border-radius: 4px;
+  font-size: 0.85rem;
+}
+
+.impact-key {
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-transform: capitalize;
+}
+
+.impact-value {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.risks-section, .opportunities-section, .winners-section, .losers-section {
+  margin: 1.5rem 0;
+  padding: 1rem;
+  border-radius: 6px;
+}
+
+.risks-section {
+  background: #fee2e2;
+  border-left: 4px solid var(--error-color);
+}
+
+.opportunities-section {
+  background: #d1fae5;
+  border-left: 4px solid var(--success-color);
+}
+
+.winners-section {
+  background: #dbeafe;
+  border-left: 4px solid #3b82f6;
+}
+
+.losers-section {
+  background: #fef3c7;
+  border-left: 4px solid var(--warning-color);
+}
+
+.risks-section h4, .opportunities-section h4,
+.winners-section h4, .losers-section h4 {
+  margin-bottom: 0.75rem;
+}
+
+.risk-item, .opportunity-item {
+  margin: 0.5rem 0;
+  padding-left: 1rem;
+}
+
+.roi-section {
+  padding: 1.5rem;
+  background: var(--success-color);
+  color: white;
+  border-radius: 8px;
+  margin: 1.5rem 0;
+}
+
+.roi-section h4 {
+  margin-bottom: 1rem;
+}
+
+.roi-item {
+  margin: 0.5rem 0;
+  padding: 0.5rem;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+}
+
+.recommendation, .recommendations-list {
+  padding: 1.5rem;
+  background: #f0f9ff;
+  border-radius: 8px;
+  border-left: 4px solid #0ea5e9;
+  margin: 1.5rem 0;
+}
+
+.recommendation p {
+  margin-top: 0.5rem;
+  line-height: 1.6;
+}
+
+.extra-details {
+  padding: 1rem;
+  background: var(--bg-color);
+  border-radius: 6px;
+  margin: 1rem 0;
+}
+
+.detail-item {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.detail-item:last-child {
+  border-bottom: none;
+}
+
