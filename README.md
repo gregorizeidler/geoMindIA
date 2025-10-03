@@ -3,7 +3,7 @@
 **A powerful platform combining Large Language Models (LLMs) with geospatial data analysis, providing a natural language interface for complex spatial insights with AI vision and route optimization.**
 
 *Intelligent geospatial analysis powered by AI*
-
+ 
 [![Python](https://img.shields.io/badge/Python-3.10+-blue.svg)](https://python.org)
 [![React](https://img.shields.io/badge/React-18-61dafb.svg)](https://reactjs.org)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.104-009688.svg)](https://fastapi.tiangolo.com)
